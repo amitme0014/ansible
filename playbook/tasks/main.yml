@@ -37,7 +37,38 @@
     name: jenkins
     state: present
 
-#- script: /home/ubuntu/roles/removeScript.sh
+- name: Creating a directory called init.groovy.d/
+  become: yes
+  file:
+    path: /var/lib/jenkins/init.groovy.d/
+    state: directory
+    mode: 0777
+
+- name: copying groovy file
+  become: yes
+  copy:
+    src: /home/ubuntu/ansible/user.groovy
+    dest: /var/lib/jenkins/init.groovy.d/
+    owner: jenkins
+    group: jenkins
+    mode: 0777
+
+- name: restarting jenkins service, so that groovy file can load up
+  become: yes
+  service:
+    name: jenkins
+    state: restarted
+
+#- name: Install plugin
+ # jenkins_plugin:
+  #  name: build-pipeline-plugin
+
+
+
+
+
+
+#script: /home/ubuntu/roles/removeScript.sh
 
 
 
