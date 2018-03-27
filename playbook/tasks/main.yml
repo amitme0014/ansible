@@ -59,6 +59,38 @@
     name: jenkins
     state: restarted
 
+- pause:
+    minutes: 1
+
+
+- name: Install plugin
+  jenkins_plugin:
+    name: "{{ item }}"
+    validate_certs: no
+    url_username: amit
+    url_password: amit
+    url: http://34.208.214.229:8080
+    url: http://54.200.141.25:8080
+  with_items: 
+     - slack
+     - git
+
+#- name: Install plugin
+ # validate_certs: no
+  #jenkins_plugin:
+   # validate_certs: no
+ #   name: slack
+  #  validate_certs: no
+   # url_username: amit
+    #url_password: amit
+    #url: http://54.200.141.25:8080
+
+
+
+
+
+
+
 #- name: Install plugin
  # jenkins_plugin:
   #  name: build-pipeline-plugin
