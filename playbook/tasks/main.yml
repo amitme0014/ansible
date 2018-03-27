@@ -75,6 +75,30 @@
      - slack
      - git
 
+
+- name: restarting jenkins
+  become: yes
+  service:
+    name: jenkins
+    state: restarted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #- name: Install plugin
  # validate_certs: no
   #jenkins_plugin:
